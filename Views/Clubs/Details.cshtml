@@ -1,0 +1,30 @@
+@model SwimSuite.Models.Club
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="d-flex align-items-center justify-content-between gap-3 mb-4">
+    <div>
+        <h1 class="h2 mb-1">@Model.Name</h1>
+        <p class="text-muted mb-0">Club tenant details.</p>
+    </div>
+    <a class="btn btn-outline-secondary" asp-action="Index">Back to clubs</a>
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Registration number</dt>
+    <dd class="col-sm-9">@(Model.RegistrationNumber ?? "-")</dd>
+
+    <dt class="col-sm-3">Email</dt>
+    <dd class="col-sm-9">@(Model.Email ?? "-")</dd>
+
+    <dt class="col-sm-3">Phone number</dt>
+    <dd class="col-sm-9">@(Model.PhoneNumber ?? "-")</dd>
+
+    <dt class="col-sm-3">Address</dt>
+    <dd class="col-sm-9">@(Model.Address ?? "-")</dd>
+
+    <dt class="col-sm-3">Created</dt>
+    <dd class="col-sm-9">@Model.CreatedAtUtc.ToString("u")</dd>
+</dl>

@@ -3,6 +3,7 @@ using System;
 
 namespace SwimSuite.Data.Migrations
 {
+    [Migration("20260630223000_AddClubs")]
     public partial class AddClubs : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

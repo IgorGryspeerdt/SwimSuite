@@ -14,6 +14,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddScoped<IClubService, ClubService>();
+builder.Services.AddScoped<ITrainingScheduleService, TrainingScheduleService>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

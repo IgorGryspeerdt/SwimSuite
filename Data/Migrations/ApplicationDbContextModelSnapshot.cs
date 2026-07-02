@@ -141,6 +141,37 @@ namespace SwimSuite.Data.Migrations
                     b.ToTable("Clubs");
                 });
 
+            modelBuilder.Entity("SwimSuite.Models.TrainingBlock", b =>
+                {
+                    b.Property<Guid>("Id");
+                    b.Property<Guid>("ClubId");
+                    b.Property<DateTime>("CreatedAtUtc");
+                    b.Property<DateOnly>("Date");
+                    b.Property<TimeOnly>("EndTime");
+                    b.Property<string>("Location").HasMaxLength(160);
+                    b.Property<string>("Notes").HasMaxLength(400);
+                    b.Property<TimeOnly>("StartTime");
+                    b.Property<Guid>("TrainingGroupId");
+
+                    b.HasKey("Id");
+                    b.HasIndex("ClubId");
+                    b.HasIndex("TrainingGroupId");
+                    b.ToTable("TrainingBlocks");
+                });
+
+            modelBuilder.Entity("SwimSuite.Models.TrainingGroup", b =>
+                {
+                    b.Property<Guid>("Id");
+                    b.Property<Guid>("ClubId");
+                    b.Property<DateTime>("CreatedAtUtc");
+                    b.Property<string>("Description").HasMaxLength(400);
+                    b.Property<string>("Name").IsRequired().HasMaxLength(120);
+
+                    b.HasKey("Id");
+                    b.HasIndex("ClubId");
+                    b.ToTable("TrainingGroups");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -190,6 +221,46 @@ namespace SwimSuite.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("SwimSuite.Models.TrainingBlock", b =>
+                {
+                    b.HasOne("SwimSuite.Models.Club", "Club")
+                        .WithMany("TrainingBlocks")
+                        .HasForeignKey("ClubId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SwimSuite.Models.TrainingGroup", "TrainingGroup")
+                        .WithMany("TrainingBlocks")
+                        .HasForeignKey("TrainingGroupId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Club");
+                    b.Navigation("TrainingGroup");
+                });
+
+            modelBuilder.Entity("SwimSuite.Models.TrainingGroup", b =>
+                {
+                    b.HasOne("SwimSuite.Models.Club", "Club")
+                        .WithMany("TrainingGroups")
+                        .HasForeignKey("ClubId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Club");
+                });
+
+            modelBuilder.Entity("SwimSuite.Models.Club", b =>
+                {
+                    b.Navigation("TrainingBlocks");
+                    b.Navigation("TrainingGroups");
+                });
+
+            modelBuilder.Entity("SwimSuite.Models.TrainingGroup", b =>
+                {
+                    b.Navigation("TrainingBlocks");
                 });
 #pragma warning restore 612, 618
         }

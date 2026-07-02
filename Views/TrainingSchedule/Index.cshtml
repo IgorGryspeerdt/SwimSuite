@@ -1,0 +1,88 @@
+@model SwimSuite.Models.TrainingScheduleViewModel
+
+@{
+    ViewData["Title"] = "Training";
+}
+
+<div class="d-flex align-items-center justify-content-between gap-3 mb-4">
+    <div>
+        <h1 class="h2 mb-1">Training</h1>
+        <p class="text-muted mb-0">@Model.Club.Name</p>
+    </div>
+    <div class="d-flex gap-2">
+        <a class="btn btn-outline-primary" asp-action="CreateGroup" asp-route-clubId="@Model.Club.Id">Create group</a>
+        <a class="btn btn-primary" asp-action="CreateBlock" asp-route-clubId="@Model.Club.Id">Create block</a>
+    </div>
+</div>
+
+<section class="mb-5">
+    <h2 class="h4 mb-3">Training groups</h2>
+
+    @if (Model.TrainingGroups.Count == 0)
+    {
+        <div class="alert alert-info" role="alert">
+            No training groups have been created yet.
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-striped align-middle">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var group in Model.TrainingGroups)
+                    {
+                        <tr>
+                            <td>@group.Name</td>
+                            <td>@(group.Description ?? "-")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</section>
+
+<section>
+    <h2 class="h4 mb-3">Training blocks</h2>
+
+    @if (Model.TrainingBlocks.Count == 0)
+    {
+        <div class="alert alert-info" role="alert">
+            No training blocks have been created yet.
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-striped align-middle">
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Group</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var block in Model.TrainingBlocks)
+                    {
+                        <tr>
+                            <td>@block.Date.ToString("yyyy-MM-dd")</td>
+                            <td>@block.StartTime.ToString("HH:mm") - @block.EndTime.ToString("HH:mm")</td>
+                            <td>@(block.TrainingGroup?.Name ?? "-")</td>
+                            <td>@(block.Location ?? "-")</td>
+                            <td>@(block.Notes ?? "-")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</section>

@@ -9,7 +9,10 @@
         <h1 class="h2 mb-1">@Model.Name</h1>
         <p class="text-muted mb-0">Club tenant details.</p>
     </div>
-    <a class="btn btn-outline-secondary" asp-action="Index">Back to clubs</a>
+    <div class="d-flex gap-2">
+        <a class="btn btn-primary" asp-controller="TrainingSchedule" asp-action="Index" asp-route-clubId="@Model.Id">Training</a>
+        <a class="btn btn-outline-secondary" asp-action="Index">Back to clubs</a>
+    </div>
 </div>
 
 <dl class="row">

@@ -23,4 +23,8 @@ public class Club
     public string? Address { get; set; }
 
     public DateTime CreatedAtUtc { get; set; } = DateTime.UtcNow;
+
+    public ICollection<TrainingGroup> TrainingGroups { get; set; } = new List<TrainingGroup>();
+
+    public ICollection<TrainingBlock> TrainingBlocks { get; set; } = new List<TrainingBlock>();
 }

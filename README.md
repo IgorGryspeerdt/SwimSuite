@@ -84,28 +84,6 @@ Business logic should remain independent from controllers whenever possible.
 - Production-ready deployment
 - Commercial SaaS potential
 
-## Repository Structure
-
-```text
-/
-├── SwimSuite.Web/        MVC application
-├── docs/                 Project documentation
-├── .github/              GitHub & AI instructions
-├── SwimSuite.sln
-└── README.md
-```
-
-## Documentation
-
-Additional documentation can be found in the `docs` folder:
-
-- AGENTS.md
-- ARCHITECTURE.md
-- DATABASE.md
-- DECISIONS.md
-- DOMAIN.md
-- ROADMAP.md
-
 ## Development Philosophy
 
 The project follows a simple principle:

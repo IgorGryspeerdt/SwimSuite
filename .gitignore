@@ -21,7 +21,11 @@ publish/
 # ASP.NET Core local settings
 appsettings.Local.json
 appsettings.*.local.json
+appsettings.*.Local.json
+appsettings.Production.json
 secrets.json
+Properties/serviceDependencies.local.json
+Properties/serviceDependencies.local.json.user
 
 # Local project notes
 copilot-instructions.md

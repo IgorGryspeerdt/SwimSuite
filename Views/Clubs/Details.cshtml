@@ -10,6 +10,7 @@
         <p class="text-muted mb-0">Club tenant details.</p>
     </div>
     <div class="d-flex gap-2">
+        <a class="btn btn-outline-primary" asp-controller="Trainers" asp-action="Index" asp-route-clubId="@Model.Id">Trainers</a>
         <a class="btn btn-primary" asp-controller="TrainingSchedule" asp-action="Index" asp-route-clubId="@Model.Id">Training</a>
         <a class="btn btn-outline-secondary" asp-action="Index">Back to clubs</a>
     </div>

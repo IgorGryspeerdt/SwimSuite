@@ -27,4 +27,6 @@ public class Club
     public ICollection<TrainingGroup> TrainingGroups { get; set; } = new List<TrainingGroup>();
 
     public ICollection<TrainingBlock> TrainingBlocks { get; set; } = new List<TrainingBlock>();
+
+    public ICollection<Trainer> Trainers { get; set; } = new List<Trainer>();
 }

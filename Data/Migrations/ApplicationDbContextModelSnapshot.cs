@@ -172,6 +172,22 @@ namespace SwimSuite.Data.Migrations
                     b.ToTable("TrainingGroups");
                 });
 
+            modelBuilder.Entity("SwimSuite.Models.Trainer", b =>
+                {
+                    b.Property<Guid>("Id");
+                    b.Property<Guid>("ClubId");
+                    b.Property<DateTime>("CreatedAtUtc");
+                    b.Property<string>("Email").HasMaxLength(160);
+                    b.Property<string>("FirstName").IsRequired().HasMaxLength(120);
+                    b.Property<bool>("IsActive");
+                    b.Property<string>("LastName").IsRequired().HasMaxLength(120);
+                    b.Property<string>("PhoneNumber").HasMaxLength(80);
+
+                    b.HasKey("Id");
+                    b.HasIndex("ClubId");
+                    b.ToTable("Trainers");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -252,8 +268,20 @@ namespace SwimSuite.Data.Migrations
                     b.Navigation("Club");
                 });
 
+            modelBuilder.Entity("SwimSuite.Models.Trainer", b =>
+                {
+                    b.HasOne("SwimSuite.Models.Club", "Club")
+                        .WithMany("Trainers")
+                        .HasForeignKey("ClubId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Club");
+                });
+
             modelBuilder.Entity("SwimSuite.Models.Club", b =>
                 {
+                    b.Navigation("Trainers");
                     b.Navigation("TrainingBlocks");
                     b.Navigation("TrainingGroups");
                 });

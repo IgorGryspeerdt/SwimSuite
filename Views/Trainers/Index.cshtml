@@ -1,0 +1,49 @@
+@model SwimSuite.Models.TrainerListViewModel
+
+@{
+    ViewData["Title"] = "Trainers";
+}
+
+<div class="d-flex align-items-center justify-content-between gap-3 mb-4">
+    <div>
+        <h1 class="h2 mb-1">Trainers</h1>
+        <p class="text-muted mb-0">@Model.Club.Name</p>
+    </div>
+    <div class="d-flex gap-2">
+        <a class="btn btn-primary" asp-action="Create" asp-route-clubId="@Model.Club.Id">Create trainer</a>
+        <a class="btn btn-outline-secondary" asp-controller="Clubs" asp-action="Details" asp-route-id="@Model.Club.Id">Back to club</a>
+    </div>
+</div>
+
+@if (Model.Trainers.Count == 0)
+{
+    <div class="alert alert-info" role="alert">
+        No trainers have been created yet.
+    </div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-striped align-middle">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var trainer in Model.Trainers)
+                {
+                    <tr>
+                        <td>@trainer.DisplayName</td>
+                        <td>@(trainer.Email ?? "-")</td>
+                        <td>@(trainer.PhoneNumber ?? "-")</td>
+                        <td>@(trainer.IsActive ? "Active" : "Inactive")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

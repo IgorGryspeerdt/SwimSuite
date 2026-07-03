@@ -12,6 +12,8 @@ namespace SwimSuite.Data
 
         public DbSet<TrainingBlock> TrainingBlocks => Set<TrainingBlock>();
 
+        public DbSet<Trainer> Trainers => Set<Trainer>();
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -33,6 +35,12 @@ namespace SwimSuite.Data
                 .WithMany(group => group.TrainingBlocks)
                 .HasForeignKey(block => block.TrainingGroupId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Trainer>()
+                .HasOne(trainer => trainer.Club)
+                .WithMany(club => club.Trainers)
+                .HasForeignKey(trainer => trainer.ClubId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

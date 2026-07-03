@@ -24,6 +24,7 @@ appsettings.*.local.json
 secrets.json
 
 # Local project notes
+copilot-instructions.md
 docs/
 
 # Logs and diagnostics

@@ -15,6 +15,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddScoped<IClubService, ClubService>();
 builder.Services.AddScoped<ITrainingScheduleService, TrainingScheduleService>();
+builder.Services.AddScoped<ITrainerService, TrainerService>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

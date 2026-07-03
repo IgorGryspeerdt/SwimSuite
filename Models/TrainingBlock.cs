@@ -27,4 +27,6 @@ public class TrainingBlock
     public string? Notes { get; set; }
 
     public DateTime CreatedAtUtc { get; set; } = DateTime.UtcNow;
+
+    public ICollection<TrainerAttendance> TrainerAttendances { get; set; } = new List<TrainerAttendance>();
 }

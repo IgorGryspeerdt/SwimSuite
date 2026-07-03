@@ -31,4 +31,6 @@ public class Trainer
     public DateTime CreatedAtUtc { get; set; } = DateTime.UtcNow;
 
     public string DisplayName => $"{FirstName} {LastName}".Trim();
+
+    public ICollection<TrainerAttendance> Attendances { get; set; } = new List<TrainerAttendance>();
 }

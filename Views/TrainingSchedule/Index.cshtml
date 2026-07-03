@@ -68,6 +68,7 @@
                         <th scope="col">Group</th>
                         <th scope="col">Location</th>
                         <th scope="col">Notes</th>
+                        <th scope="col" class="text-end">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -79,6 +80,9 @@
                             <td>@(block.TrainingGroup?.Name ?? "-")</td>
                             <td>@(block.Location ?? "-")</td>
                             <td>@(block.Notes ?? "-")</td>
+                            <td class="text-end">
+                                <a class="btn btn-sm btn-outline-primary" asp-controller="TrainerAttendance" asp-action="Edit" asp-route-clubId="@Model.Club.Id" asp-route-trainingBlockId="@block.Id">Attendance</a>
+                            </td>
                         </tr>
                     }
                 </tbody>

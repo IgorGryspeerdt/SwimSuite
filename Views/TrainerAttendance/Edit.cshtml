@@ -1,0 +1,73 @@
+@model SwimSuite.Models.TrainerAttendanceEditViewModel
+
+@{
+    ViewData["Title"] = "Trainer attendance";
+}
+
+<div class="d-flex align-items-center justify-content-between gap-3 mb-4">
+    <div>
+        <h1 class="h2 mb-1">Trainer attendance</h1>
+        <p class="text-muted mb-0">
+            @Model.ClubName · @Model.TrainingGroupName · @Model.Date.ToString("yyyy-MM-dd") @Model.StartTime.ToString("HH:mm") - @Model.EndTime.ToString("HH:mm")
+        </p>
+    </div>
+    <a class="btn btn-outline-secondary" asp-controller="TrainingSchedule" asp-action="Index" asp-route-clubId="@Model.ClubId">Back to training</a>
+</div>
+
+@if (Model.Trainers.Count == 0)
+{
+    <div class="alert alert-info" role="alert">
+        No active trainers are available for this club.
+    </div>
+}
+else
+{
+    <form asp-action="Edit" asp-route-clubId="@Model.ClubId" asp-route-trainingBlockId="@Model.TrainingBlockId" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input asp-for="ClubId" type="hidden" />
+        <input asp-for="TrainingBlockId" type="hidden" />
+
+        <div class="table-responsive mb-3">
+            <table class="table table-striped align-middle">
+                <thead>
+                    <tr>
+                        <th scope="col">Trainer</th>
+                        <th scope="col">Present</th>
+                        <th scope="col">Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (var i = 0; i < Model.Trainers.Count; i++)
+                    {
+                        <tr>
+                            <td>
+                                @Model.Trainers[i].TrainerName
+                                <input asp-for="Trainers[i].TrainerId" type="hidden" />
+                                <input asp-for="Trainers[i].TrainerName" type="hidden" />
+                            </td>
+                            <td>
+                                <div class="form-check">
+                                    <input asp-for="Trainers[i].IsPresent" class="form-check-input" />
+                                    <label asp-for="Trainers[i].IsPresent" class="form-check-label">Present</label>
+                                </div>
+                            </td>
+                            <td>
+                                <input asp-for="Trainers[i].Notes" class="form-control" />
+                                <span asp-validation-for="Trainers[i].Notes" class="text-danger"></span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Save attendance</button>
+            <a class="btn btn-outline-secondary" asp-controller="TrainingSchedule" asp-action="Index" asp-route-clubId="@Model.ClubId">Cancel</a>
+        </div>
+    </form>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

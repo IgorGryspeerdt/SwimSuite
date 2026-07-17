@@ -11,7 +11,9 @@
     </div>
     <div class="d-flex gap-2">
         <a class="btn btn-outline-primary" asp-controller="Trainers" asp-action="Index" asp-route-clubId="@Model.Id">Trainers</a>
+        <a class="btn btn-outline-primary" asp-controller="Officials" asp-action="Index" asp-route-clubId="@Model.Id">Officials</a>
         <a class="btn btn-primary" asp-controller="TrainingSchedule" asp-action="Index" asp-route-clubId="@Model.Id">Training</a>
+        <a class="btn btn-outline-primary" asp-controller="OfficialDuties" asp-action="Index" asp-route-clubId="@Model.Id">Official duties</a>
         <a class="btn btn-outline-secondary" asp-action="Index">Back to clubs</a>
     </div>
 </div>

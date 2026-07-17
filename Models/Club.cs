@@ -29,4 +29,8 @@ public class Club
     public ICollection<TrainingBlock> TrainingBlocks { get; set; } = new List<TrainingBlock>();
 
     public ICollection<Trainer> Trainers { get; set; } = new List<Trainer>();
+
+    public ICollection<Official> Officials { get; set; } = new List<Official>();
+
+    public ICollection<OfficialDuty> OfficialDuties { get; set; } = new List<OfficialDuty>();
 }

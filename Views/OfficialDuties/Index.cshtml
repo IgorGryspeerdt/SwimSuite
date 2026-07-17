@@ -1,0 +1,53 @@
+@model SwimSuite.Models.OfficialDutyListViewModel
+
+@{
+    ViewData["Title"] = "Official duties";
+}
+
+<div class="d-flex align-items-center justify-content-between gap-3 mb-4">
+    <div>
+        <h1 class="h2 mb-1">Official duties</h1>
+        <p class="text-muted mb-0">@Model.Club.Name</p>
+    </div>
+    <div class="d-flex gap-2">
+        <a class="btn btn-primary" asp-action="Create" asp-route-clubId="@Model.Club.Id">Register duty</a>
+        <a class="btn btn-outline-secondary" asp-controller="Clubs" asp-action="Details" asp-route-id="@Model.Club.Id">Back to club</a>
+    </div>
+</div>
+
+@if (Model.Duties.Count == 0)
+{
+    <div class="alert alert-info" role="alert">
+        No official duties have been registered yet.
+    </div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-striped align-middle">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Meet</th>
+                    <th scope="col">Official</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var duty in Model.Duties)
+                {
+                    <tr>
+                        <td>@duty.Date.ToString("yyyy-MM-dd")</td>
+                        <td>@duty.MeetName</td>
+                        <td>@(duty.Official?.DisplayName ?? "-")</td>
+                        <td>@duty.Role</td>
+                        <td>@(duty.Location ?? "-")</td>
+                        <td>@(duty.Notes ?? "-")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

@@ -1,0 +1,51 @@
+@model SwimSuite.Models.OfficialListViewModel
+
+@{
+    ViewData["Title"] = "Officials";
+}
+
+<div class="d-flex align-items-center justify-content-between gap-3 mb-4">
+    <div>
+        <h1 class="h2 mb-1">Officials</h1>
+        <p class="text-muted mb-0">@Model.Club.Name</p>
+    </div>
+    <div class="d-flex gap-2">
+        <a class="btn btn-primary" asp-action="Create" asp-route-clubId="@Model.Club.Id">Create official</a>
+        <a class="btn btn-outline-secondary" asp-controller="Clubs" asp-action="Details" asp-route-id="@Model.Club.Id">Back to club</a>
+    </div>
+</div>
+
+@if (Model.Officials.Count == 0)
+{
+    <div class="alert alert-info" role="alert">
+        No officials have been created yet.
+    </div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-striped align-middle">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">License</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var official in Model.Officials)
+                {
+                    <tr>
+                        <td>@official.DisplayName</td>
+                        <td>@(official.LicenseNumber ?? "-")</td>
+                        <td>@(official.Email ?? "-")</td>
+                        <td>@(official.PhoneNumber ?? "-")</td>
+                        <td>@(official.IsActive ? "Active" : "Inactive")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

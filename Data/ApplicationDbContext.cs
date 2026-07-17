@@ -16,6 +16,10 @@ namespace SwimSuite.Data
 
         public DbSet<TrainerAttendance> TrainerAttendances => Set<TrainerAttendance>();
 
+        public DbSet<Official> Officials => Set<Official>();
+
+        public DbSet<OfficialDuty> OfficialDuties => Set<OfficialDuty>();
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -64,6 +68,24 @@ namespace SwimSuite.Data
                 .HasOne(attendance => attendance.Trainer)
                 .WithMany(trainer => trainer.Attendances)
                 .HasForeignKey(attendance => attendance.TrainerId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Official>()
+                .HasOne(official => official.Club)
+                .WithMany(club => club.Officials)
+                .HasForeignKey(official => official.ClubId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<OfficialDuty>()
+                .HasOne(duty => duty.Club)
+                .WithMany(club => club.OfficialDuties)
+                .HasForeignKey(duty => duty.ClubId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<OfficialDuty>()
+                .HasOne(duty => duty.Official)
+                .WithMany(official => official.Duties)
+                .HasForeignKey(duty => duty.OfficialId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

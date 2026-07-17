@@ -1,0 +1,61 @@
+@model SwimSuite.Models.OfficialDutyCreateViewModel
+
+@{
+    ViewData["Title"] = "Register official duty";
+}
+
+<div class="mb-4">
+    <h1 class="h2 mb-1">Register official duty</h1>
+</div>
+
+<form asp-action="Create" asp-route-clubId="@Model.ClubId" method="post" class="row g-3">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input asp-for="ClubId" type="hidden" />
+
+    <div class="col-12 col-lg-6">
+        <label asp-for="OfficialId" class="form-label"></label>
+        <select asp-for="OfficialId" asp-items="ViewBag.Officials" class="form-select">
+            <option value="">Choose an official</option>
+        </select>
+        <span asp-validation-for="OfficialId" class="text-danger"></span>
+    </div>
+
+    <div class="col-12 col-lg-6">
+        <label asp-for="Date" class="form-label"></label>
+        <input asp-for="Date" class="form-control" type="date" />
+        <span asp-validation-for="Date" class="text-danger"></span>
+    </div>
+
+    <div class="col-12 col-lg-6">
+        <label asp-for="MeetName" class="form-label"></label>
+        <input asp-for="MeetName" class="form-control" />
+        <span asp-validation-for="MeetName" class="text-danger"></span>
+    </div>
+
+    <div class="col-12 col-lg-6">
+        <label asp-for="Role" class="form-label"></label>
+        <input asp-for="Role" class="form-control" />
+        <span asp-validation-for="Role" class="text-danger"></span>
+    </div>
+
+    <div class="col-12 col-lg-6">
+        <label asp-for="Location" class="form-label"></label>
+        <input asp-for="Location" class="form-control" />
+        <span asp-validation-for="Location" class="text-danger"></span>
+    </div>
+
+    <div class="col-12">
+        <label asp-for="Notes" class="form-label"></label>
+        <textarea asp-for="Notes" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="Notes" class="text-danger"></span>
+    </div>
+
+    <div class="col-12 d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Register</button>
+        <a class="btn btn-outline-secondary" asp-action="Index" asp-route-clubId="@Model.ClubId">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

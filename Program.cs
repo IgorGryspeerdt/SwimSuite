@@ -17,6 +17,8 @@ builder.Services.AddScoped<IClubService, ClubService>();
 builder.Services.AddScoped<ITrainingScheduleService, TrainingScheduleService>();
 builder.Services.AddScoped<ITrainerService, TrainerService>();
 builder.Services.AddScoped<ITrainerAttendanceService, TrainerAttendanceService>();
+builder.Services.AddScoped<IOfficialService, OfficialService>();
+builder.Services.AddScoped<IOfficialDutyService, OfficialDutyService>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

@@ -12,8 +12,8 @@ using SwimSuite.Data;
 namespace SwimSuite.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260714134942_AddOfficialDuties")]
-    partial class AddOfficialDuties
+    [Migration("20260902223511_InitialPostgresSchema")]
+    partial class InitialPostgresSchema
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -8,7 +8,7 @@ using SwimSuite.Data;
 
 #nullable disable
 
-namespace SwimSuite.Data.Migrations
+namespace SwimSuite.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot

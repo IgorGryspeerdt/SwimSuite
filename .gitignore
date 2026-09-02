@@ -29,7 +29,6 @@ Properties/serviceDependencies.local.json.user
 
 # Local project notes
 copilot-instructions.md
-docs/
 
 # Logs and diagnostics
 *.log

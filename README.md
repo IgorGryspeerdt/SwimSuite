@@ -1,26 +1,38 @@
 
 # SwimSuite
 
-SwimSuite is a modern, SaaS-ready web application designed to help swimming clubs manage their day-to-day operations more efficiently.
+SwimSuite is a modern web application for swimming-club operations, with a future SaaS direction.
 
 The project started from a real problem: trainers and officials currently register their activities manually, making reimbursement calculations and bookkeeping time-consuming and error-prone. SwimSuite aims to centralize these processes in a single, easy-to-use application.
+
+## Documentation
+
+The `/docs` directory is the source of truth for contributors and AI-assisted development. Start with:
+
+- [Vision](docs/VISION.md)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Coding standards](docs/coding-standards.md)
+- [Business rules](docs/business-rules.md)
+- [Roadmap](docs/ROADMAP.md)
+- [AI-assisted development](docs/ai-development.md)
+
+The database, permissions, domain documentation and architecture decision records are also indexed in `/docs`.
 
 ## Vision
 
 The long-term goal is to build a modular platform that can be used by one or many swimming clubs.
 
-Although development starts with a single club, the application is designed from day one to support multiple clubs (multi-tenancy), making it suitable as a commercial SaaS product in the future.
+Although development starts with club-bound data, the long-term direction is support for multiple clubs (multi-tenancy) and a commercial SaaS product. Full tenant isolation and club-specific user rights are not implemented yet; see the documentation for the current state.
 
-## Initial Features
+## Current implemented functionality
 
 The MVP focuses on the following functionality:
 
-- Secure authentication and role-based access
-- Management of clubs and users
+- Identity-based registration and login UI, with authenticated access on business controllers
 - Trainer attendance registration
 - Official duty registration
-- Monthly reimbursement overview
-- Export to Excel for bookkeeping
+- Training groups and training blocks
+- Management of officials and official-duty registration
 
 ## Future Modules
 
@@ -55,7 +67,7 @@ The platform is intended to grow over time with additional modules, such as:
 
 ### Infrastructure
 
-- Docker
+- Dockerfile aanwezig (huidige projectbestandsverwijzing moet vóór een betrouwbare containerbuild worden herzien)
 - Docker Compose (planned)
 
 ## Architecture

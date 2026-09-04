@@ -4,6 +4,21 @@
 
 SwimSuite gebruikt PostgreSQL via EF Core en de Npgsql-provider. `ApplicationDbContext` erft van `IdentityDbContext`; daardoor omvat de database zowel ASP.NET Core Identity-tabellen als de applicatietabellen hieronder. Alle applicatie-entiteiten gebruiken een `Guid` als primaire sleutel. EF Core-migraties staan in `Data/Migrations/`; er is geen seed data in de code.
 
+## Development seed data
+
+`Data/DevelopmentDataSeeder.cs` fills a fixed, fictional Northstar Aquatics dataset only when the application runs in the Development environment. It runs at application startup after `builder.Build()`, uses stable IDs and existing unique relationships, and is therefore safe to run repeatedly. It never runs outside Development and does not apply migrations.
+
+The dataset includes a club, three training groups, active and inactive trainers and officials, training blocks, trainer attendance, and several official duties. Existing `Notes` fields demonstrate a changed location, a cancelled training, an absent trainer, and a trainer replacement. Swimmers, competitions, swimmer attendance, and reimbursements are not seeded because they do not exist in the current model.
+
+The seeder can also create two confirmed fictional Identity users without roles. Set a local password without committing it to the repository, then start the application:
+
+```powershell
+dotnet user-secrets set "DevelopmentSeed:Password" "<choose-a-local-test-password>"
+dotnet run
+```
+
+Without `DevelopmentSeed:Password`, only the domain dataset is seeded. Roles, claims, and permissions are not seeded because the current application does not register or use them.
+
 ## Applicatie-entiteiten
 
 | Entiteit / tabel | Primaire sleutel | Belangrijkste velden en relaties |

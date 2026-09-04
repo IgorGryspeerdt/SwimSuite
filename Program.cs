@@ -13,6 +13,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddScoped<DevelopmentDataSeeder>();
 builder.Services.AddScoped<IClubService, ClubService>();
 builder.Services.AddScoped<ITrainingScheduleService, TrainingScheduleService>();
 builder.Services.AddScoped<ITrainerService, TrainerService>();
@@ -26,6 +27,10 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    await using var scope = app.Services.CreateAsyncScope();
+    var seeder = scope.ServiceProvider.GetRequiredService<DevelopmentDataSeeder>();
+    await seeder.SeedAsync();
+
     app.UseMigrationsEndPoint();
 }
 else
